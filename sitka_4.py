@@ -56,8 +56,8 @@ plt.plot(dates, lows, c="blue")
 
 plt.fill_between(dates, highs, lows, facecolor="blue", alpha=0.1)
 
-plt.title("Daily high temperatures, July 2018", fontsize=16)
-plt.xlabel("Month of July 2018")
+plt.title("Daily high and low temperatures, 2018", fontsize=16)
+plt.xlabel("Dates")
 plt.ylabel("Temperatures (F)", fontsize=16)
 plt.tick_params(axis="both", which="major", labelsize=16)
 
