@@ -20,6 +20,8 @@ tminsa = header_row_sa.index("TMIN")
 tmaxsa = header_row_sa.index("TMAX")
 tmindv = header_row_dv.index("TMIN")
 tmaxdv = header_row_dv.index("TMAX")
+sa_title = header_row_sa.index("NAME")
+dv_title = header_row_dv.index("NAME")
 
 lows_dv = []
 lows_sa = []
@@ -33,7 +35,7 @@ for row in csv_file_sa:
         current_date = datetime.strptime(row[2],"%Y-%m-%d")
         high = int(row[tmaxsa])
         low = int(row[tminsa])
-        sa_title = row[1]           
+        sa_header = row[sa_title]           
     except ValueError:    
         print(f"Missing data for {current_date}")
     else:
@@ -45,7 +47,7 @@ for row in csv_file_dv:
         current_date = datetime.strptime(row[2],"%Y-%m-%d")
         high = int(row[tmaxdv])
         low = int(row[tmindv])
-        dv_title = row[1]            
+        dv_header = row[dv_title]            
     except ValueError:    
         print(f"Missing data for {current_date}")
     else:
@@ -65,16 +67,16 @@ plt.subplot(2,1,1)
 plt.plot(dates_sa, highs_sa, c="red")
 plt.plot(dates_sa, lows_sa, c="blue")
 plt.fill_between(dates_sa, highs_sa, lows_sa, facecolor="blue", alpha=0.1)
-plt.title(sa_title)
+plt.title(sa_header)
 
 plt.subplot(2,1,2)
 plt.plot(dates_dv, highs_dv, c="red")
 plt.plot(dates_dv, lows_dv, c="blue")
 plt.fill_between(dates_dv, highs_dv, lows_dv, facecolor="blue", alpha=0.1)
-plt.title(dv_title)
+plt.title(dv_header)
 
 fig.autofmt_xdate()
 
-plt.suptitle("Temperature comparison between "+sa_title+" and "+dv_title)
+plt.suptitle("Temperature comparison between "+sa_header+" and "+dv_header)
 
 plt.show()
